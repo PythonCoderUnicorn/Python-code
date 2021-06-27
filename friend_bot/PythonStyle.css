@@ -1,0 +1,26 @@
+
+body{
+    background-color: #0b172e;
+    color: chartreuse;
+    font-family: 'Roboto Mono', monospace;
+}
+h1{
+    text-align: center;
+}
+h2{
+    margin-left: 8%;
+}
+p{
+    padding-left: 8%;
+}
+
+header{
+    margin: 10px;
+    color: aqua;
+    font-size: medium;
+}
+
+
+
+
+

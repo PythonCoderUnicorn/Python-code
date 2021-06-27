@@ -1,0 +1,1666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+
+    <title> Python Code Portfolio </title>
+</head>
+<body>
+
+    <!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body{
+    background-color: #0b172e;
+    color: chartreuse;
+    font-family: 'Roboto Mono', monospace;
+    
+}
+h1{
+    text-align: center;
+}
+h2{
+    margin-left: 8%;
+}
+p{
+    padding-left: 8%;
+}
+
+header{
+    margin: 10px;
+    color: aqua;
+    font-size: medium;
+}
+.collapsible {
+    font-family: 'Roboto Mono', monospace;
+    background-color: rgb(37, 51, 106);
+    color: chartreuse;       /*#0b172e; */
+    cursor: pointer;
+    padding: 19px;
+    /* width: 100%; */
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    margin: 10px;
+    margin-left: 80px;
+    width: 50%;
+
+}
+
+.active, .collapsible:hover {
+  background-color: #555;
+}
+
+.content {
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: #0b172e;
+}
+</style>
+</head>
+
+
+<body>
+
+    <header>
+        <a href="./friend_bot/friend2.html"> friend chatbot </a>
+    </header>
+
+    <div class="container">
+        <h1> Python Portfolio </h1>
+    </div>
+
+
+
+
+
+    <h2> Collapsibles</h2>
+
+    <p> A Collapsible:</p>
+    <button class="collapsible"> Animated  </button>
+    <div class="content">
+        <section>
+            <h2> Animation Dated &copy; 2016 </h2> 
+            <pre>
+                ------------------
+                import pygame, sys
+                from pygame.locals import *
+    
+                pygame.init()
+    
+                FPS = 30 # frames per second setting
+                fpsClock = pygame.time.Clock()
+    
+                # set up the window
+                DISPLAYSURF = pygame.display.set_mode((400, 300), 0, 32)
+                pygame.display.set_caption('Animation')
+    
+                WHITE = (255, 255, 255)
+                catImg = pygame.image.load('cat.png')
+                catx = 10
+                caty = 10
+                direction = 'right'
+    
+                while True: # the main game loop
+                    DISPLAYSURF.fill(WHITE)
+    
+                    if direction == 'right':
+                        catx += 5
+                        if catx == 280:
+                            direction = 'down'
+                    elif direction == 'down':
+                        caty += 5
+                        if caty == 220:
+                            direction = 'left'
+                    elif direction == 'left':
+                        catx -= 5
+                        if catx == 10:
+                            direction = 'up'
+                    elif direction == 'up':
+                        caty -= 5
+                        if caty == 10:
+                            direction = 'right'
+    
+                    DISPLAYSURF.blit(catImg, (catx, caty))
+    
+                    for event in pygame.event.get():
+                        if event.type == QUIT:
+                            pygame.quit()
+                            sys.exit()
+    
+                    pygame.display.update()
+                    fpsClock.tick(FPS)
+            </pre>
+        </section>
+    
+    </div>
+
+  
+    <button class="collapsible"> Text to Speech </button>
+    <div class="content">
+        <section>
+            <pre>
+                from .engine import pyttsx
+                from . import driver
+                #except Expception as e 
+                
+                engine = pyttsx.init()
+                engine.say(" good afternoon ")
+                engine.runAndWait()
+            </pre>
+        </section> 
+    </div>
+
+
+    <button class="collapsible">Text to Speech (Mac) </button>
+    <div class="content">
+        <section>
+            <pre>
+                import os
+                os.system("echo 'hello world'")
+                os.system("say hello there, i am invisible text but you can hear me. \
+                    I am your computer that is talking to you using the text that you typed in your awesome python code. \
+                    the weather is super wonderful and is fine for my processors. I am your computer friend  ")
+                
+            </pre>
+        </section>
+
+    </div>
+
+
+    <button class="collapsible"> Class Object  </button>
+    <div class="content">
+        <section>
+            <pre>
+                class Shape:
+                """docstring for Shape"""
+                
+                def __init__(self, x, y):
+                    #super(Shape, self).__init__()
+            
+                    # a variable inside a class is an ATTRIBUTE
+                    self.x = x
+                    self.y = y
+                    self.description = " this shape has not been described yet"
+                    self.author = " no one is author of shape yet"
+
+                #---- a function() inside a class is called a METHOD
+                def area(self):
+                    return self.x * self.y
+
+                def perimeter(self):
+                    return 2 * self.x + 2 * self.y
+
+                def desribe(self, text):
+                    self.description = text
+
+                def authorName(self, text):
+                    self.author = text
+
+                def scaleSize(self, scale):
+                    self.x = self.x * scale
+                    self.y = self.y * scale   
+                    
+                #--- class instance
+                rectangle = Shape(100,45) 
+                #--- class instance
+                fat_rectangle = Shape(130,120)
+                    
+                print (" rectangle area : ",rectangle.area())
+                print (" rectangle perimeter : ",rectangle.perimeter())
+                print (" rectangle scale size: ",rectangle.scaleSize(0.5))              
+
+
+                #------------------------------- CLASS INHERITANCE
+                ''' create a new Class based on ther 'parent' class which allows parent method modifications
+                or have the same name as an attribute or method in parent Class '''
+                '''
+                class Square(Shape):
+                    def __init__(self,x):
+                        self.x = x
+                        self.y = y
+                
+                class DoubleSquare(Square):
+                    def __init__(self,y):
+                        self.x = 2 * y
+                        self.y = y
+                
+                    def perimeter(self):
+                        return 2 * self.x + 3 * self.y
+            </pre>
+        </section>
+    </div>
+
+
+
+
+
+    <button class="collapsible"> Number Conversion </button>
+    <div class="content">
+        <section>
+            <pre>
+                number= int(input(" enter a int: "))
+
+                print(" -- in hex: ", hex(number))
+                print(" -- in binary: ", bin(number))
+                print(" -- complex number: ", complex(number))
+
+                # complex number
+                n = 5
+                z = complex(n)
+                print(" complex # ",z)
+
+                print(" -- Octal: ", oct(number))
+                print("\n chr(87) = ", chr(87))
+                print(" ord('a') = ", ord('a'))
+                print(" divmod(15,2) = ", divmod(15,2))                
+            </pre>
+        </section>
+    </div>
+
+
+
+    <button class="collapsible"> String Formatting </button>
+    <div class="content">
+        <section>
+            <pre>
+                #------------------------------------------------------------------ WORD SLICING 
+                words =" list of words of rambling testing words for slicing"
+                print(" words sliced: ", words[::2], " << slices every other letter")
+                
+                #----------------------------------------------- FORMATTING
+                print(" formatting: {0} spam".format('spicy'))
+                
+                import string
+                wordy = "formatting method synthax is fun "
+                
+                print(wordy.capitalize())
+                print(wordy.upper())
+                print(" wordy.isalpha() = ",wordy.isalpha())
+                print(" wordy.isnumeric() = ",wordy.isnumeric())
+                
+                num_list = [1,2,3,4,5,6,7]
+                print(num_list)
+                print(num_list.reverse())
+                print(num_list.count(2))      
+                
+                #------------------------------------------ string methods
+                s = "this is a string"
+                print(s.capitalize() )   # no value in (), capitalizes first letter
+                print(s.upper()  )       # all caps
+                print( s.replace('this','cheese') )
+            </pre>
+        </section>
+
+    </div>
+
+
+    <button class="collapsible"> While Loop </button>
+    <div class="content">
+        <section>
+            <pre>
+                # While loop 
+                i = 2
+                
+                while i < 22:
+                    print(i)
+                    if i == 17:
+                        print(" -- break time ")
+                        break
+                    i += 1                
+            </pre>
+        </section>
+
+    </div>
+
+
+    <button class="collapsible"> Credit Card Balance </button>
+    <div class="content">
+        <section>
+            <pre>
+                #--- 
+                creditCard_balance = 0
+                balance = 0
+                penalty = 0
+                #---
+
+                print("\n--------- interest rate on credit ---------\n")
+                
+                INTEREST_RATE = float(input(" * Enter current interest rate (%): "))
+                
+                interest_ =(INTEREST_RATE/100)
+                
+                creditCard_balance= float(input("   * Enter card balance: "))
+                
+                payment= float(input("  * Enter payment: "))
+                
+                balance = (creditCard_balance - payment)
+                new_balance = (penalty+balance)
+                
+                print("   - - - - - - - - -")
+                if (balance > 0):
+                    penalty = (balance * interest_)
+                    
+                
+                    print(" -- ( interest rate = ", interest_,") -- ")
+                    print("      balance = $", balance)
+                    print("      new interest = ", penalty)
+                
+                print("..... NEW balance is $", new_balance, ".....")               
+            </pre>
+        </section>
+
+    </div>
+
+
+    <button class="collapsible"> Payroll Program </button>
+    <div class="content">
+        <section>
+            <pre>
+                #--------------------------- work hours & overtime 
+                pay_rate =0
+                hours=0
+                
+                print("\n------ $ ------ work wages & overtime ------- $ ---\n")
+                
+                hours = float(input(" Enter # of work hours: "))
+                pay_rate = float(input(" Enter hourly wage ($) : "))
+                
+                print(" - - - - - - - - - - \n")
+                
+                if (hours > 40.0):
+                    #--- OVERTIME -----
+                    over_hours = (hours - 40.0)
+                    OVERTIME = (1.5 * over_hours * pay_rate)
+                
+                    #---- REGULAR HOURS & PAY
+                    regular_hours = (40.0 * pay_rate)
+                    full_wage = (OVERTIME + regular_hours)
+                
+                    #---- savings of 20% shown
+                    print(" [ 20% saving = $",savings_)
+                
+                    # overtime pay alone calculated & shown
+                    print("  overtime $ = ", OVERTIME)
+                    # overtime calculated with regular pay shown
+                    print("  wages = $", full_wage)
+                
+                else:
+                    # less than 40 hours worked
+                    regular_hours = (40.0 * pay_rate)
+                    print("    regular wages = $", regular_hours,"\n")
+                
+                    #---- savings of 20% shown
+                    savings_ = (regular_hours*.20)
+                    print("\t [20% saving = $",savings_,"]")
+                
+                    #--- show money after saving 20%
+                    pay_minus_savings = (regular_hours - savings_)
+                    print("\t  .... post saving = $",pay_minus_savings)
+                
+                monthly_income = (regular_hours * 2)
+                yearly_salary = (monthly_income * 12)
+                print("\t -----------------------------")
+                print("\t | ..... monthly $",monthly_income,"   |")
+                print("\t | ..... yearly $", yearly_salary,"   |")
+                print("\t -----------------------------")
+                
+                
+                print("\n ")                
+            </pre>
+        </section>
+
+    </div>
+
+
+    <button class="collapsible"> Leap Year Program </button>
+    <div class="content">
+        <section>
+            <pre>
+                # LEAP YEAR
+
+                year1 = int(input(" Enter 1 year: "))
+                
+                if (year1 % 4) ==0:
+                    if (year1 % 100) == 0:
+                        if (year1 %400) ==0:
+                            print(".... ",year1," = leap")
+                        else:
+                            print(" ",year1,"not a leap year")
+                    else:
+                        print("____ ",year1," = leap")
+                else:
+                    print(" ", year1," is not leap - ")
+                
+                                
+            </pre>
+        </section>
+
+    </div>
+
+
+    <button class="collapsible"> Get Calendar  </button>
+    <div class="content">
+        <section>
+            <pre>
+                import calendar
+
+                year = 0
+                month = 0
+                
+                year = int(input(" Enter year: "))
+                month = int(input(" Enter month # : "))
+                
+                print(" --------------------")
+                print(calendar.month(year,month))
+                print(" --------------------")               
+            </pre>
+        </section>
+
+    </div>
+
+    <button class="collapsible"> Swap Variables  </button>
+    <div class="content">
+        <section>
+            <pre>
+                # SWAP VARIABLES
+
+                print("\n ----- variable swap ----- ")
+                x = input(" Enter value for x: ")
+                y = input(" Enter value for y: ")
+                
+                # - temp & swap
+                temp = x
+                x = y
+                y = temp
+                
+                print(" ... the value for x ",x, "swapped")
+                print(" ... the value for y ",y, "swapped")              
+            </pre>
+        </section>
+
+    </div>
+
+
+    <button class="collapsible"> Odd or Even Number </button>
+    <div class="content">
+        <section>
+            <pre>
+                # ODD OR EVEN NUMBER CHECK
+
+                print("\n ----- odd or even ------")
+                number = int(input("  enter a integer: "))
+                if (number %2) ==0:
+                    print(" ",number," is even ")
+                else:
+                    print(" ",number, " is odd ")               
+            </pre>
+        </section>
+
+    </div>
+
+    <button class="collapsible"> Is It Prime ?</button>
+    <div class="content">
+        <section>
+            <pre>
+                # IS PRIME
+
+                print("\n ------ IS PRIME OR NOT ------")
+                num = int(input(" enter integer: "))
+                
+                if num > 1:
+                    for i in range(2, num):
+                        if (num % i) ==0:
+                            print(" ",num," is not a prime number")
+                            print(" ... ",i," * ", num//i, " = ",num)
+                            break
+                    else:
+                        print(" ",num, " IS PRIME ")
+                else:
+                    print(num," not prime ")                
+            </pre>
+        </section>
+
+    </div>
+
+    <button class="collapsible"> Find Largest Number  </button>
+    <div class="content">
+        <section>
+            <pre>
+                # FIND LARGEST NUMBER
+
+                print("\n ----- FIND LARGEST NUMBER -------")
+                num1 = float(input(" enter 1st number: "))
+                num2 = float(input(" enter 2nd number: "))
+                num3 = float(input(" enter 3rd number: "))
+                
+                if (num1 >= num2) and (num1 >= num3):
+                    largest = num1
+                elif (num2 >= num1) and (num2 >= num3):
+                    largest = num2
+                else:
+                    largest = num3
+                
+                print(" ... the largest number of (",num1,num2,num3,") is ",largest)
+                
+                               
+            </pre>
+        </section>
+
+    </div>
+
+
+    <button class="collapsible"> Find Lowest Common Multiple  </button>
+    <div class="content">
+        <section>
+            <pre>
+                # FIND LOWEST COMMON MULTIPLE
+
+                def L_C_M(x,y):
+                    
+                    # choose greater number
+                    if x > y:
+                        greater = x
+                    else:
+                        greater = y 
+                
+                    while (True):
+                        if((greater % x == 0) and (greater % y == 0)):
+                            lcm = greater
+                            break
+                        greater +=1
+                    return lcm 
+                
+                print("\n ---- LOWEST COMMON MULTIPLE ------")
+                num1 = int(input(" enter 1st number: "))
+                num2 = int(input(" enter 2nd number: "))
+                
+                print(" ---- ")
+                print(" ... the LCM of",num1,"&",num2, "is = ", L_C_M(num1,num2))                
+            </pre>
+        </section>
+
+    </div>
+
+    <button class="collapsible"> Highest Common Factor  </button>
+    <div class="content">
+        <section>
+            <pre>
+                # HIGHEST COMMON FACTOR
+
+                def H_C_F(x,y):
+                    
+                    # choose smallest number
+                    if x > y:
+                        smallest = y
+                    else:
+                        smallest = x
+                
+                    # loop
+                    for i in range(1, smallest+1):
+                        if((x % i ==0) and (y % i ==0)):
+                            hcf = i 
+                    return hcf 
+                
+                print("\n ----- HIGHEST COMMON FACTOR ------")
+                num1 = int(input(" enter 1st num: "))
+                num2 = int(input(" enter 2nd num: "))
+                
+                print("\t .... "," HCF = ", H_C_F(num1,num2))               
+            </pre>
+        </section>
+
+    </div>
+
+    <button class="collapsible"> Fibonacci Sequence </button>
+    <div class="content">
+        <section>
+            <pre>
+                # FIBONACCI SEQUENCE
+
+                print("\n - - - -  Fibonacci Sequence - - - -")
+                
+                n_terms = int(input(" how many terms? : "))
+                
+                num1 =0
+                num2 =1
+                count =0
+                
+                # check number of terms
+                if n_terms <= 0:
+                    print(" invalid number, positive integer only")
+                elif n_terms ==1:
+                    print(" Fibo seq up to ",n_terms, num1)
+                else:
+                    print(" Fibo seq to ", n_terms)
+                
+                    while count < n_terms:
+                        print(" ",num1, end=',')
+                        
+                        nth = num1 + num2
+                
+                        num1 = num2
+                        num2 = nth
+                        count +=1
+                
+                print("\n")                
+            </pre>
+        </section>
+
+    </div>
+
+    <button class="collapsible"> Armstrong Number  </button>
+    <div class="content">
+        <section>
+            <pre>
+                # ARMSTRONG NUMBER 
+
+                print("\n * * * * Armstrong Number * * * *")
+                
+                num = int(input(" Enter a 3 digit number: "))
+                
+                sum_ = 0
+                
+                # finds the sum of the cube of each digit
+                temp = num
+                while temp > 0:
+                    digit = temp % 10
+                    sum_ += digit ** 3
+                    temp //= 10
+                
+                if num == sum_:
+                    print(" ",num,"is an Armstrong #")
+                else:
+                    print(" ... ",num," not Armstrong number")
+                               
+            </pre>
+        </section>
+
+    </div>
+
+    <button class="collapsible"> Simple Calculator </button>
+    <div class="content">
+        <section>
+            <pre>
+                # SIMPLE CALCULATOR
+
+
+                #---------------- math functions
+                def add(x,y):
+                    return x + y 
+                
+                def subtract(x,y):
+                    return x - y 
+                
+                def multiply(x,y):
+                    return x * y 
+                
+                def divide(x,y):
+                    return x / y 
+                #----------------- 
+                
+                #----------------- display
+                print("\n Select operation: ")
+                print(" 1. Add")
+                print(" 2. Subtract")
+                print(" 3. Multiply")
+                print(" 4. Divide")
+                
+                #-------------------- user choice
+                choice = int(input(" Select one: 1/2/3/4 :"))
+                
+                num1 = int(input(" Enter 1st number: "))
+                num2 = int(input(" Enter 2nd number: "))
+                
+                if (choice ==1):
+                    print(" ...",num1,"+",num2,"=",add(num1,num2))
+                elif (choice ==2):
+                    print(" ...",num1,"-",num2,"=", subtract(num1,num2))
+                elif (choice ==3):
+                    print(" ...",num1,"*",num2,"=", multiply(num1,num2))
+                elif (choice ==4):
+                    print(" ...",num1,"/",num2,"=", divde(num1,num2))
+                else:
+                    print(" invalud selection")
+                
+                               
+            </pre>
+        </section>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <button class="collapsible"> Card Shuffle  </button>
+    <div class="content">
+        <section>
+            <pre>
+                #  CARD SHUFFLE
+
+                import itertools, random 
+
+                print("\n ----------- deck shuffle ----------")
+
+                # make a deck of cards
+                deck = list(itertools.product(range(1,14), ['Spades','Hearts','Diamonds','Clubs']))
+
+                # shuffle the cards
+                random.shuffle(deck)
+
+                # draw 5 cards
+                print(" you got: ")
+                for i in range(5):
+                    print("  ",deck[i][0],"of", deck[i][1])
+
+                print("------------------------------------ \n")
+                
+            </pre>
+        </section>
+
+    </div>
+
+    <button class="collapsible"> Word Sort  </button>
+    <div class="content">
+        <section>
+            <pre>
+                # WORD SORT in alphabetical order
+
+                usr_string = input(" enter a string: ")
+                
+                # breakdown string into list of words
+                words = usr_string.split()
+                
+                # then sort the words using sort()
+                words.sort()
+                
+                print(" words sorted: ")
+                for word in words:
+                    print(word, end=" ")
+                
+                print("\n")
+                
+            </pre>
+        </section>
+
+    </div>
+
+    <button class="collapsible"> Quadratic Equation </button>
+    <div class="content">
+        <section>
+            <pre>
+                # QUADRATIC EQUATION 
+
+                import cmath
+                
+                a = float(input(" enter value for a: "))
+                b = float(input(" enter value for b: "))
+                c = float(input(" enter value for c: "))
+                
+                # calculate
+                d = (b ** 2) - (4 * a * c)
+                
+                # solutions
+                solution1 = (-b - cmath.sqrt(d))/(2*a)
+                solution2 = (-b + cmath.sqrt(d))/(2*a)
+                
+                print(" solution: ",solution1,"&", solution2)              
+            </pre>
+        </section>
+
+    </div>
+
+    <button class="collapsible"> Recursive Search Graph  </button>
+    <div class="content">
+        <section>
+            <pre>
+                #---- depth first search = recursive alogorithm
+                def dfs(graph, start, visited=None):
+                    if visited is None:
+                        visited = set()
+                    visited.add(start)
+                    print(start)
+                    for next in graph[start] - visited:
+                        dfs(graph, next, visited)
+                    return visited
+                
+                graph = {'0': set(['1', '2']),
+                         '1': set(['0', '3', '4']),
+                         '2': set(['0']),
+                         '3': set(['1']),
+                         '4': set(['2', '3'])}
+                
+                dfs(graph, '0')               
+            </pre>
+        </section>
+
+    </div>
+
+    <button class="collapsible"> Recursion function  </button>
+    <div class="content">
+        <section>
+            <pre>
+                # recursion is a function that calls other functions
+
+                def main():
+                    loop_number = int(input(" How many times for the loop? : "))
+                    count =1
+                    recursion(loop_number, count)
+                
+                def recursion(loop_number,count):
+                    if loop_number > 0:
+                        print(" this is loop iteration ", count)
+                        recursion(loop_number -1,count +1)
+                    else:
+                        print(" ---- the loop is now complete ----")
+                
+                main()              
+            </pre>
+        </section>
+
+    </div>
+
+
+    <button class="collapsible"> Nested For Loops (triangle & stars) </button>
+    <div class="content">
+        <section>
+            <pre>
+                #  NESTED FOR LOOP
+                ##----------- number triangle
+                for i in range(1,11):
+                    for j in range(11 - i):
+                        print(" ", end = " ")
+                    for j in range(1,i):
+                        print(j, end = " ")
+                    for i in range(i, 0, -1):
+                        print(i,end= " ")
+                
+                    print("\n")
+                
+                #----------- stars
+                for i in range(1,11):
+                    for j in range(11 - i):
+                        print(" ", end = " ")
+                    for j in range(1,i):
+                        print("*", end = " ")
+                    for i in range(i, 0, -1):
+                        print("*",end= " ")
+                
+                    print("\n")              
+            </pre>
+        </section>
+
+    </div>
+
+
+    <button class="collapsible"> Menu function  </button>
+    <div class="content">
+        <section>
+            <pre>
+                # the menu function:
+                def menu(list, question):
+                    for entry in list:
+                        print(1 + list.index(entry),)
+                        print(") " + entry)
+                
+                    return int(input(question)) - 1
+                
+                
+                items = ['plant', 'chair', 'door','trash can', 'window','box']
+                
+                key_location =3
+                key_found = 0
+                loop =1
+                
+                print(" here is items, 1 has the key ")
+                print(len(items),"things: ")
+                
+                for x in items:
+                    print (x)
+                
+                print(" the door is locked, find key")
+                               
+            </pre>
+        </section>
+
+    </div>
+
+
+    <button class="collapsible"> Squaring numbers, list comprehension </button>
+    <div class="content">
+        <section>
+            <pre>
+                # squaring list of numbers, list comprehension 
+                nums = [0,1,2,3,4]
+                square_it =[]
+                for x in nums:
+                    square_it.append(x**2)
+                print square_it
+                
+                # simpler code for above
+                nums = [2,3,4,5]
+                square_it = [x**2 for x in nums]
+                print square_it            
+            </pre>
+        </section>
+
+    </div>
+
+
+    <button class="collapsible"> NumPy Arrays & Matrices </button>
+    <div class="content">
+        <section>
+            <pre>
+
+                #-----------------------------------------------------------------  NUMPY
+                # NUMPY science computing for arrays
+                
+                # numpy array is grid of values of same type non-negative integers
+                #  dimension number = rank of array
+                #  tuple of integers = shape of array
+                
+                import numpy as np
+                
+                array1 = np.array([1,2,3])                # rank 1 array
+                print(type(array1) )
+                
+                print(array1.shape )                      # prints out (3,)
+                print( )array1[0], array1[1], array1[2]   # prints 1 2 3
+                
+                array1[0] = 7     # change element in array
+                print(array1 )    # prints [7 2 3]
+                
+                array2 = np.array([[1,2,3],[4,5,6]])           # rank 2 array
+                print(array2.shape )						   # prints (2,3)
+                print(array2[0,0], array2[0,1], array2[1,0] )  # prints 1 2 4
+                
+                
+                #-------------------------------------------------------------- create arrays
+                A = np.zeros((4,2))   # array of all zeros, 4 down, 2 across
+                print(A )
+                
+                B = np.ones((4,2))  # array of 1's
+                print( B)
+                
+                C = np.full((4,2),7)  # a full array of 7's
+                print(C )
+                
+                D = np.eye(4)  # a 4x4 identity matrix
+                print( D)
+                
+                E = np.random.random((2,2))   # array of random values
+                print(E )
+                #------------------
+                
+                
+                #------------------------------------------------------- slicing arrays
+                # make array of (3,4)
+                # [ [1 2 3 4]
+                #   [5 6 7 8]
+                #   [9 10 11 12]]
+                a = np.array([ [1,2,3,4],[5,6,7,8],[9,10,11,12] ])
+                print(a )
+                print("a[0,0] =",a[0,0], "   a[0,3] =",a[0,3] )
+                print("a[1,0] =",a[1,0], "   a[1,3] =",a[1,3] )
+                print("a[2,0] =",a[2,0], "   a[2,3] =",a[2,3] )
+                
+                
+                # slice out first 2 rows and columns 1 and 2, resulting arrays shape is (2,2)
+                b = a[:2, 1:3]
+                print(b)
+                
+                # this prints out 3 rows, 0 and 1 columns
+                c = a[:3, 0:2]  
+                print(c)
+                
+                row_1 = a[1,:]  # this prints just the row 1
+                row_2 = a[2:3,:]  # this prints row 2
+                print(row_1 )
+                print(" row 2 only", row_2 )
+                
+                
+                column_row1 = a[:,1]    # this pulls only the 2 from array 
+                column_row2 = a[:,1:2]  # this pulls only column 1 from array
+                print(" row 1, column 1: ",column_row1 )
+                print(" column 1 elements" )
+                print(column_row2 )
+                
+                
+                #----------------------------------------------------------- mutating arrays
+                a_2 = np.array([ [1,2,3],[4,5,6],[7,8,9],[10,11,12] ])
+                print(a_2 )
+                v = np.array([0,2,0,1])  # array of indices
+                print(a[np.arange(4),v] ) 
+                
+                a_2[:,v] +=10
+                print(" all elements +10 ..." )
+                print(a_2 )
+                
+                
+                #---------------------------------------------------------------- array math
+                # dtype= np.float64 is to force float datatype
+                x = np.array( [[1,2],[3,4]], dtype=np.float64)  
+                y = np.array( [[5,6],[7,8]], dtype=np.float64)
+                
+                
+                print("x+y", np.add(x,y) ) 
+                
+                print('x-y', np.subtract(x,y) )
+                
+                print('x*y', np.mulitply(x,y) )
+                
+                print('x/y', np.divide(x,y) )
+                
+                print(np.sqrt(x) )   # squareroot function
+                
+                
+                #------------------------- dot is for mulitplying vectors in matrix
+                v = np.array([9,10])
+                w = np.array([11,12])
+                print(v, w )
+                print(" array v [dot] array w = ", np.dot(v,w) ) 
+                
+                # array x([[1,2],[3,4]])  (x)dot(v) matrix array muliplication
+                print(np.dot(x,v) )
+                
+                print(np.dot(x,y) ) 
+                #----------------------------------------------------
+                
+                
+                #------------------------------------------------------- array sums
+                x = np.array([[1,2],[3,4]])
+                
+                print(x )
+                print("array sum = ", np.sum(x)  )          # sums all elements
+                print("column sum =", np.sum(x, axis=0) )   # sum of each column [1+3]+[2+4]==[4 6]
+                print("row sum =", np.sum(x,axis=1)  )      # sum of each row
+                #----------------------------------------------------------
+                
+                
+                #--------------------------------------------------- transpose matrix (T)
+                x=np.array([[1,2],[3,4]])
+                
+                print(x )
+                print(x.T )  # transposes matrix
+                # [1 3]
+                # [2 4]
+                #----------------------------------------------------
+                
+                #------------------------------------------------------- odd shape matrix math
+                # called broadcasting
+                x = np.array([ [1,2,3],[4,5,6],[7,8,9],[10,11,12] ])
+                v = np.array([1,0,1])
+                y = np.empty_like(x)   # makes empty matrix, equal shape as x matrix
+                
+                for i in range(4):
+                    y[i,:] = x[i,:]+v   #adding vector v to each row of x matrix
+                
+                print(y )
+                
+                vv = np.tile(v,(4,1))  # stacks 4 copies of v on top of each other
+                print(vv )
+                y = x+vv
+                print(y )
+                #-------------------------------------------------------------------
+                
+                               
+            </pre>
+        </section>
+
+    </div>
+
+
+    <button class="collapsible"> Simple Matplotlib Plot  </button>
+    <div class="content">
+        <section>
+            <pre>
+                #-------------------------------------------------------------- plotting
+                # matplotlib  opens a window 
+                import matplotlib.pyplot as plt
+                
+                x = np.arange(0,3 *np.pi, 0.1)   # x, y coordinate on sine curve
+                y = np.sin(x)
+                
+                plt.plot(x,y)   # plots points using matplotlib
+                plt.show()     # must have plt.show() to show graphics
+                                
+            </pre>
+        </section>
+
+    </div>
+
+
+    <button class="collapsible"> Number Guess </button>
+    <div class="content">
+        <section>
+            <pre>
+                def guessTheNumber():
+                    number = random.randint(1,40)
+                    guesses_taken = 0
+                    print (" --------- Guess The Number Game -----------------------------\n")
+                    print (" Guess the number between 1 and 40 : ")
+                
+                    while guesses_taken < 10:
+                        guess = int(input(" ... Guess and hit enter: "))
+                        guesses_taken = guesses_taken + 1
+                
+                        if guess < number:
+                            print (" <<--- that number is too low ")
+                        if guess > number:
+                            print (" --->> that number is too high ")
+                        if guess == number:
+                            print (" congrats! number: ",number,"was it and in ",guesses_taken,"guesses!")
+                            break  
+                    print ("-------------------------------------------------------------\n")
+                             
+            </pre>
+        </section>
+
+    </div>
+
+
+    <button class="collapsible"> GPA Letter Grade  </button>
+    <div class="content">
+        <section>
+            <pre>
+                #-------------------------------------- class grade lettering 
+
+                def faculty_grade():
+                
+                    print ("------ Health Science grade letter ---------\n)"
+                
+                    grade = float(raw_input("  Enter grade % : "))
+                
+                    
+                    if 95 <= grade <= 100:
+                        print (" = A+ (GPA 4.0)\n")
+                
+                    elif 91 <= grade <= 94.9:
+                        print (" = A (GPA 4.0)\n")
+                    elif 87 <= grade <= 90.9:
+                        print (" = A- (GPA 3.7)\n")
+                    elif 83 <= grade <= 86.9:
+                        print (" = B+ (GPA 3.3)\n")
+                    elif 79 <= grade <= 82.9:
+                        print (" = B (GPA 3.0)\n")
+                    elif 75 <= grade <= 78.9:
+                        print (" = B- (GPA 2.7)\n")
+                    elif 71 <= grade <= 74.9:
+                        print(" = C+ (GPA 2.3)\n")
+                    elif 67 <= grade <= 70.9:
+                        print (" = C (GPA 2.0)\n")
+                    elif 63 <= grade <= 66.9:
+                        print (" = C- (GPA 1.7)\n")
+                    elif 59 <= grade <= 62.9:
+                        print (" D+ (GPA 1.3)\n")
+                    elif 55 <= grade <= 58.9:
+                        print (" D (GPA 1.0)\n")
+                    else:
+                        print (" F (GPA = 0)\n")               
+            </pre>
+        </section>
+
+    </div>
+
+
+    <button class="collapsible"> APA Generator  </button>
+    <div class="content">
+        <section>
+            <pre>
+                #-------------------  APA GENERATOR 
+                from sys import exit
+                
+                def doi_or_link():
+                
+                    have_doi = input(" have a doi # ?  (y/n) :  ")
+                    if have_doi.lower() ==('y'):
+                        article_doi = str(input(" Enter doi # : "))
+                
+                        print(" ",last_name.title(),'.', first_name[0].title(),'.(', article_yr ,').',article_title.capitalize(),'.', article_journal.title(),'.', article_pages,'.', "doi:",article_doi, "\n")
+                        exit()
+                
+                    if have_doi.lower() ==('n'):
+                        article_link = str(input(" Enter link of article: "))
+                        print(" ",last_name.title(),'.', first_name[0].title(),'.('+ article_yr + ').',article_title.capitalize(),'.', article_journal.title(),'.', article_pages,'.', "Retrieved from:", article_link)
+                    else:
+                        print(" -- invalid -- ")
+                        return doi_or_link()
+                
+
+                print("\n --------- APA GENERATOR ---------------")
+                
+                first_name = input(" Enter first name: ")
+                last_name = input(" Enter last name: ")
+                article_yr = int(input(" Enter year of article: "))
+                article_title = input(" Enter title: ")
+                article_journal = input(" Enter journal name: ")
+                article_pages = input(" Enter pages x-xx : ")
+                
+                doi_or_link()             
+            </pre>
+        </section>
+
+    </div>
+
+
+    <button class="collapsible"> Temperature Converter </button>
+    <div class="content">
+        <section>
+            <pre>
+                # temperature conversion
+
+                fahrenheit = float(input(" Enter fahrenheit temperature: "))
+                celsius = (5.0/9 * (fahrenheit - 32) + 0.5)
+                
+                print (" is ",round(celsius,3)," degrees celsius") 
+                               
+            </pre>
+        </section>
+
+    </div>
+
+
+    <button class="collapsible"> Money Change Counter  </button>
+    <div class="content">
+        <section>
+            <pre>
+                # change counter to make a dollar
+
+                import math 
+                
+                pennies = 1
+                nickel = 5
+                dime = 10
+                quarter = 25
+                loonie = 100
+                twoonie = 200
+                
+                amount =0
+                user_pennies =0
+                user_nickels =0
+                user_dime =0
+                user_quarter =0
+                user_loonie =0
+                user_twoonie =0
+                
+                # -------- user input
+                amount = float(input(" Enter a dollar amount in cents: "))
+                
+                #amount01 = (amount % pennies)
+                user_pennies =(amount / pennies)
+                
+                #amount = (amount % nickel)
+                user_nickels =(amount / nickel)
+                
+                #amount10 = (amount % dime)
+                user_dime = (amount / dime)
+                
+                #amount25 = (amount % quarter)
+                user_quarter =(amount / quarter)
+                
+                #amount100 = (amount % loonie)
+                user_loonie =(amount /loonie)
+                
+                #amount200 = (amount % twoonie)
+                user_twoonie =(amount / twoonie)
+                
+                
+                print( " twoonies:  ", math.floor(user_twoonie))
+                print( " loonies:   ", math.floor(user_loonie) )
+                print( " quarters:  ", math.floor(user_quarter) )
+                print( " dimes:     ", math.floor(user_dime))
+                print( " nickels:   ", math.floor(user_nickels))
+                print( " pennies:   ", math.floor(user_pennies) )
+                               
+            </pre>
+        </section>
+
+    </div>
+
+    <button class="collapsible"> EER Calculator </button>
+    <div class="content">
+        <section>
+            <pre>
+                # FORMULAS FROM CLASS ASSIGNMENT
+
+                print( "-------------------------- BMR and EER -----------------------\n")
+                
+                weight_kg = float(input(" Enter your weight in kg : "))
+                age = float(input(" Enter your age : "))
+                height_m = float(input(" Enter your height in m: "))    # metres !
+                
+                #------- BMR = kg * 24  (men)      BMR = kg *22 (female)
+                m_BMR = (weight_kg * 24)
+                w_BMR = (weight_kg * 22)
+                
+                
+                print( " ____Physical activity values used in EER  -- ADULTS 19+ ____")
+                print( " sedentary, daily living + walking ..................... = 1.00 ")
+                print( " low active, daily living + 30-60min moderate .......... = 1.12 ")
+                print( " active, daily living + 60min of activity .............. = 1.27 ")
+                print( " very active, DL + 60min activity +60min or 120 activity = 1.45")
+                PA = float(input(" Enter Physical activity # : ")) 
+                
+                # HEALTH CANADA EER          PA #
+                EER_m = 662 - (9.53 * age) + (PA) * ((15.91 * weight_kg)+(539.6*height_m))  
+                EER_w = 354 - (6.91 * age) + (PA) * ((9.36 * weight_kg)+(726*height_m)) 
+                
+                
+                
+                #--------- activity levels % [textbook]
+                print( "__________ activity levels ________________________")
+                print( " sedentary/inactive .............. (range: .25 to .40)")
+                print( " light activity     .............. (range: .40 to .70)")
+                print( " moderate activity  .............. (range: .50 to .80)")
+                print( " heavily active     .............. (range: .80 to 1.20)")
+                print( " very active        .............. (range: 1.10 to 1.45)")
+                AL_1 = float(input(" Enter activity low-level value : "))
+                AL_2 = float(input(" Enter activity high-level value : "))
+                
+                
+                #------- EER = BMR + (BMR * AL)   [textbook]
+                male_EER = (m_BMR + (m_BMR * AL_1))
+                male_EER2 = (m_BMR + (m_BMR * AL_2))
+                female_EER = (w_BMR +(w_BMR * AL_1))
+                female_EER2 = (w_BMR +(w_BMR * AL_2))
+                
+                print "\n"
+                print("---- HEALTH CANADA ")
+                print( " [Health Canada]  EER male = ", round(EER_m,2)," female = ",round(EER_w,2))
+                print( " [textbook]   male EER = ",round(male_EER,2)," to ",round(male_EER2,2),"\n" ) 
+                #---------- EER = BMR * AL
+                print( " female EER = ",round(female_EER,2)," to ",round(female_EER2,2) )
+                
+                print( " [textbook]  BMR = ",m_BMR )		
+                #--------------- BMR 
+                print( " [textbook] BMR = ",w_BMR)
+                                
+            </pre>
+        </section>
+
+    </div>
+
+    <button class="collapsible"> Overtime Wage Calculator </button>
+    <div class="content">
+        <section>
+            <pre>
+                # weekly wages
+
+                extra_rate =1.50
+                
+                #---- user input
+                hours_worked = float(input(" Enter hours worked: "))
+                payRate = float(input(" Enter hourly wage $: "))
+                
+                #--- determine if overtime is paid out
+                if (hours_worked > 40.0):
+                    wages = (40.0 * payRate) + (extra_rate * payRate) * (hours_worked - 40.0)
+                    print( " your wages are $ ", wages)
+                else:
+                    wages = (hours_worked * payRate)
+                    print( " your wages are $ ", wages)               
+            </pre>
+        </section>
+
+    </div>
+
+    <button class="collapsible"> Cipher  </button>
+    <div class="content">
+        <section>
+            <pre>
+                # CAESAR CIPHER
+
+                MAX_KEY_SIZE = 26
+                
+                def getMode():
+                    while True:
+                        print(" to encrypt or decrypt ?")
+                        
+                        mode = input(" - Enter e or d : ")
+                        mode.lower()
+                        if mode ==("d"):
+                            return mode
+                
+                def getMessage():
+                    message = input(" < Enter message > : ")
+                    return getKey()
+                
+                def getKey():
+                    key = 0
+                    while True:
+                        print(" - Enter the key # (1-%s)"%(MAX_KEY_SIZE))
+                        key = int(input())
+                        if (key >=1 and key <= MAX_KEY_SIZE):
+                            return key
+                
+                def translate_message(mode,message,key):
+                    if mode[0] ==('d'):
+                        key = -key
+                    translated = " "
+                
+                    for symbol in message:
+                        if symbol.isalpha():
+                            num = ord(symbol)
+                            num += key
+                
+                        if symbol.isupper():
+                            if num > ord("Z"):
+                                num -= 26
+                            elif num < ord("A"):
+                                num += 26
+                        elif symbol.islower():
+                            if num > ord("z"):
+                                num -= 26
+                            elif num < ord("a"):
+                                num +=26
+                                translated += chr(num)
+                        else:
+                            translated += symbol
+                            return translated
+                
+                
+                mode = getMode()
+                message = getMessage()
+                key = getKey()
+                
+                print(" [ translated text ] = ", translate_message(mode,message,key))
+                                               
+            </pre>
+        </section>
+
+    </div>
+
+
+<br>
+<br>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+    <!--  
+    <button class="collapsible"> Open Section 3 </button>
+    <div class="content">
+        <section>
+            <pre>
+                
+            </pre>
+        </section>
+
+    </div>
+
+    <button class="collapsible"> Open Section 3 </button>
+    <div class="content">
+        <section>
+            <pre>
+                
+            </pre>
+        </section>
+
+    </div>
+
+
+    <button class="collapsible"> Open Section 3 </button>
+    <div class="content">
+        <section>
+            <pre>
+                
+            </pre>
+        </section>
+
+    </div>
+
+    <button class="collapsible"> Open Section 3 </button>
+    <div class="content">
+        <section>
+            <pre>
+                
+            </pre>
+        </section>
+
+    </div>
+
+
+    <button class="collapsible">Open Section 3</button>
+    <div class="content">
+        <section>
+            <pre>
+                
+            </pre>
+        </section>
+
+    </div>
+
+
+    <button class="collapsible">Open Section 3</button>
+    <div class="content">
+        <section>
+            <pre>
+                
+            </pre>
+        </section>
+
+    </div>
+
+    <button class="collapsible">Open Section 3</button>
+    <div class="content">
+        <section>
+            <pre>
+                
+            </pre>
+        </section>
+
+    </div>
+
+    <button class="collapsible">Open Section 3</button>
+    <div class="content">
+        <section>
+            <pre>
+                
+            </pre>
+        </section>
+
+    </div>
+
+    <button class="collapsible">Open Section 3</button>
+    <div class="content">
+        <section>
+            <pre>
+                
+            </pre>
+        </section>
+
+    </div>
+ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.maxHeight){
+        content.style.maxHeight = null;
+        } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+        } 
+    });
+    }
+    </script>
+
+
+</body>
+</html>
